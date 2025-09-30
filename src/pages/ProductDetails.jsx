@@ -9,9 +9,9 @@ export function ProductDetails() {
     const productPromise = getProduct(id)
     return (
         <section className="mx-auto max-w-2xl px-4 py-4 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8 flex-1">
-        <Suspense fallback={<Loading />}>
-            <Product productPromise={productPromise} />
-        </Suspense>
+            <Suspense fallback={<Loading />}>
+                <Product productPromise={productPromise} />
+            </Suspense>
         </section>
     )
 }

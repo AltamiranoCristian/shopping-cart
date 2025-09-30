@@ -1,10 +1,11 @@
 import { Header } from "./Header"
 import { Footer } from "./Footer"
-export function Layout({ children }) {
+import { Outlet } from "react-router"
+export function Layout() {
     return (
         <main className="min-h-screen flex flex-col">
             <Header />
-                {children}
+                <Outlet />
             <Footer />
         </main>
     )

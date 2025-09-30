@@ -11,7 +11,7 @@ export function Cart({ visible, setVisible }) {
         </div>
         
     return (
-        <Sidebar visible={visible} position='right' header={cartHeader} onHide={() => setVisible(false)} className='px-4 py-6'>
+        <Sidebar visible={visible} position='right' header={cartHeader} onHide={() => setVisible(false)} className='px-4 py-6 bg-white' maskClassName='bg-black'>
             <div className="mt-8">
                 <div className="flow-root">
                     <ul role="list" className="-my-6 divide-y divide-gray-200">

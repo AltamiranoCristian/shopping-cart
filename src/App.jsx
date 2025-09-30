@@ -4,19 +4,21 @@ import { Home } from './pages/Home.jsx'
 import { NotFound } from "@/pages/NotFound.jsx";
 import { Layout } from './pages/layout/Layout.jsx';
 import { ProductDetails } from './pages/ProductDetails.jsx';
+import { ScrollToTop } from './components/common/ScrollToTop.js';
 
 function App() {
 
     return (
         <CartProvider>
-            <Layout>
-                <Routes>
+            <ScrollToTop/>
+            <Routes>
+                <Route element={<Layout />}>
                     <Route path='/' element={<Home />} />
                     <Route path='/products' element={<Home />} />
                     <Route path='/products/:id' element={<ProductDetails />} />
-                    <Route path='*' element={<NotFound />} />
-                </Routes>
-            </Layout>
+                </Route>
+                <Route path='*' element={<NotFound />} />
+            </Routes>
         </CartProvider>
     )
 }

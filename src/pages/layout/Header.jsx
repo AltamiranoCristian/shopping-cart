@@ -10,10 +10,9 @@ export function Header() {
     const { totalItems } = useCart();
     const [visible, setVisible] = useState(false);
 
-    
     return (
         <>
-            <header className="sticky top-0 z-50 w-full bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 text-white shadow-lg px-4 sm:px-6 lg:px-8">
+            <header className="sticky top-0 z-50 w-full bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 text-white shadow-xl px-4 sm:px-6 lg:px-8">
                 <nav className="flex items-center justify-between py-4 lg:px-8">
                     <Link to='/' className="flex items-center gap-2">
                         <img src={react} alt="logo" className="h-8 w-auto" />
