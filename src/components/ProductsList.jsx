@@ -10,6 +10,7 @@ export function ProductsList({ productslist, categoriesList }) {
     const products = use(productslist);
     const categories = use(categoriesList);
     const [categorySelected, setCategorySelected] = useState(null);
+    const [filteredProducts, setFilteredProducts] = useState(products);
     const { addItem } = useCart();
 
     useEffect(() => {
@@ -17,25 +18,25 @@ export function ProductsList({ productslist, categoriesList }) {
             if (categorySelected) {
                 try {
                     const response = await getProductsByCategory(categorySelected);
-                    console.log(response)
+                    setFilteredProducts(response)
                 } catch (error) {
                     console.error(error)
                 }
-            }
+            } else setFilteredProducts(products)
         })();
-    }, [categorySelected])
+    }, [categorySelected, products])
 
 
-    if (products.length > 0) return (
+    if (filteredProducts.length > 0) return (
         <>
             <section className="flex justify-end shadow-lg p-4 rounded-xl">
                 <Dropdown value={categorySelected} onChange={(e) => setCategorySelected(e.value)} options={categories} className="py-2 px-1 w-full  md:w-1/3 lg:w-1/5 flex items-center [&_svg]:top-3" panelClassName="[&_span]:py-2 [&_span]:px-4" placeholder="Category" showClear />
             </section>
             <section className='mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 items-stretch'>
-                {products.map((product) => (
+                {filteredProducts.map((product) => (
                     <article key={product.id} className="group relative flex flex-col justify-between shadow-lg p-2 rounded-xl">
                         <Link to={`/products/${product.id}`}>
-                            <img src={product.image} alt={product.title} className="aspect-square w-full rounded-md object-cover lg:aspect-auto lg:h-80 group-hover:scale-104 hover:cursor-pointer transition-all duration-300" />
+                            <img src={product.image} alt={product.title} className="aspect-square w-full rounded-md object-cover lg:aspect-auto lg:h-80 group-hover:scale-104 hover:cursor-pointer transition-all duration-300" loading="lazy" />
                         </Link>
                         <section className="mt-4 flex justify-between">
                             <h2 className="font-bold line-clamp-2 cursor-pointer group-hover:text-purple-600 transition-colors duration-300">{product.title}</h2>
